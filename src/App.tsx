@@ -1,69 +1,26 @@
-import React, { useCallback, useRef, useState } from 'react';
-import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
-import { PublicService } from './api';
-import ProductList from './components/ProductList';
-import { debounce } from './utils/functions.ts';
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Header from './components/Header';
+import { AuthProvider } from './contexts/AuthContext';
+import ProductList from './components/ProductList.tsx';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
-const queryClient = new QueryClient();
-
-function Products() {
-  const [page, setPage] = useState(0);
-  const [search, setSearch] = useState('');
-  const perPage = 10;
-  const searchInputRef = useRef<HTMLInputElement>(null);
-
-  const debouncedSearch = useCallback(
-    debounce((value: string) => {
-      setSearch(value);
-      setPage(0);
-    }, 300),
-    [],
-  );
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    debouncedSearch(value);
-  };
-
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['products', page, search],
-    queryFn: () => PublicService.listProducts(search, page, perPage),
-  });
-
-  if (isLoading) return <div>Načítání...</div>;
-  if (error) return <div>Nastala chyba: {(error as Error).message}</div>;
-
-  return (
-    <div>
-      <input
-        type='text'
-        onChange={handleSearchChange}
-        placeholder='Hledat produkty'
-        ref={searchInputRef}
-      />
-      <ProductList
-        products={data?.content || []}
-        totalPages={data?.totalPages || 0}
-        currentPage={page}
-        onPageChange={setPage}
-      />
-    </div>
-  );
-}
-
-function App() {
+const App: React.FC = () => {
+  const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
-      <div className='App'>
-        <header>
-          <h1>Můj E-Shop</h1>
-        </header>
-        <main>
-          <Products />
-        </main>
-      </div>
+      <AuthProvider>
+        <Router>
+          <div className='App'>
+            <Header />
+            <main>
+              <ProductList />
+            </main>
+          </div>
+        </Router>
+      </AuthProvider>
     </QueryClientProvider>
   );
-}
+};
 
 export default App;
