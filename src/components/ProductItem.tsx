@@ -1,13 +1,14 @@
 import React from 'react';
 import { ProductDTO } from '../api';
-import { useAuth } from '../hooks/useAuth.tsx';
+// import { useAuth } from '../hooks/useAuth.tsx';
 
 interface ProductItemProps {
   product: ProductDTO;
+  isAuthenticated: boolean;
 }
 
-const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
-  const { isAuthenticated } = useAuth();
+const ProductItem: React.FC<ProductItemProps> = ({ product, isAuthenticated = false }) => {
+  // const { isAuthenticated } = useAuth();
   return (
     <tr className='product-item'>
       <td>{product.name}</td>

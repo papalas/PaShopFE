@@ -55,7 +55,9 @@ const ProductList: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {data?.content?.map((product) => <ProductItem key={product.id} product={product} />)}
+            {data?.content?.map((product) => (
+              <ProductItem key={product.id} product={product} isAuthenticated={isAuthenticated} />
+            ))}
           </tbody>
         </table>
         <div className='pagination'>

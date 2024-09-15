@@ -11,9 +11,9 @@ const App: React.FC = () => {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <Router>
-          <div className='App'>
+          <div className='app-container'>
             <Header />
-            <main>
+            <main className='main-container'>
               <ProductList />
             </main>
           </div>

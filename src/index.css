@@ -22,13 +22,40 @@ a:hover {
   color: #1e2480;
 }
 
-body {
+.main-container {
+  width: 100%;
+  max-width: 1200px; /* Optional: set a max-width if you don't want the content to stretch too wide on large screens */
+  margin: 0 auto;
+  padding: 0 20px; /* Add some horizontal padding */
+  box-sizing: border-box;
+}
+
+html, body {
   margin: 0;
+  padding: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
+ /* min-width: 320px;*/
   min-height: 100vh;
+  width: 100%;
 }
+
+.app-container {
+  width: 100vh;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+
+/* Adjust any overly restrictive width settings */
+.content-area,
+.main-section,
+.page-wrapper {
+  width: 100%;
+  max-width: none;
+}
+
 
 h1 {
   font-size: 3.2em;
@@ -96,9 +123,11 @@ input[type="text"] {
 }
 
 table {
-  width: 100%;
+  width: 90vh;
   border-collapse: collapse;
   margin-bottom: 20px;
+  overflow-x: auto;
+  display: block;
 }
 
 th, td {
@@ -110,6 +139,10 @@ th, td {
 th {
   background-color: #f2f2f2;
   font-weight: bold;
+}
+
+thead {
+  width: 80vh;
 }
 
 tr:hover {

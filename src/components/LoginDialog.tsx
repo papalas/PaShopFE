@@ -30,37 +30,84 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ onClose }) => {
         right: '1rem',
         background: 'white',
         padding: '1rem',
-        borderRadius: '4px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+        borderRadius: '8px',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
       }}
     >
-      <form onSubmit={handleSubmit}>
-        <h2>Login</h2>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <div>
-          <label htmlFor='username'>Username:</label>
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+      >
+        <h2 style={{ marginTop: 0, marginBottom: '1rem', textAlign: 'center' }}>Login</h2>
+        {error && <p style={{ color: 'red', textAlign: 'center', margin: 0 }}>{error}</p>}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <label htmlFor='username' style={{ fontWeight: 'bold' }}>
+            Username:
+          </label>
           <input
             type='text'
             id='username'
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            style={{
+              padding: '0.5rem',
+              borderRadius: '4px',
+              border: '1px solid #ccc',
+              fontSize: '1rem',
+            }}
           />
         </div>
-        <div>
-          <label htmlFor='password'>Password:</label>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <label htmlFor='password' style={{ fontWeight: 'bold' }}>
+            Password:
+          </label>
           <input
             type='password'
             id='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            style={{
+              padding: '0.5rem',
+              borderRadius: '4px',
+              border: '1px solid #ccc',
+              fontSize: '1rem',
+            }}
           />
         </div>
-        <button type='submit'>Login</button>
-        <button type='button' onClick={onClose}>
-          Cancel
-        </button>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '1rem' }}>
+          <button
+            type='submit'
+            style={{
+              padding: '0.5rem 1rem',
+              borderRadius: '4px',
+              border: 'none',
+              background: '#4a90e2',
+              color: 'white',
+              cursor: 'pointer',
+              fontSize: '1rem',
+            }}
+          >
+            Login
+          </button>
+          <button
+            type='button'
+            onClick={onClose}
+            style={{
+              padding: '0.5rem 1rem',
+              borderRadius: '4px',
+              border: '1px solid #4a90e2',
+              background: 'white',
+              color: '#4a90e2',
+              cursor: 'pointer',
+              fontSize: '1rem',
+              fontWeight: 'bold',
+            }}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
