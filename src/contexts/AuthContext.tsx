@@ -1,5 +1,5 @@
 import React, { createContext, useContext, ReactNode } from 'react';
-import { useAuth as useAuthHook } from '../hooks/useAuth';
+import { useAuthInternal as useAuthHook } from '../hooks/useAuthInternal.tsx';
 
 interface AuthContextType {
   isAuthenticated: boolean;

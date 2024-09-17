@@ -10,7 +10,7 @@ interface AuthState {
   username: string | null;
 }
 
-export function useAuth() {
+export function useAuthInternal() {
   const [authState, setAuthState] = useState<AuthState>({
     isAuthenticated: false,
     username: null,
